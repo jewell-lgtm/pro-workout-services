@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@redwoodjs/core": "2.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "husky": ">=6",
     "lint-staged": ">=10",
     "prettier": "^2.7.1",

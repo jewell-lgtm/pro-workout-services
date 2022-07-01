@@ -8,3 +8,37 @@ generator client {
   binaryTargets = "native"
 }
 
+model ExercisePlan {
+  id        Int        @id @default(autoincrement())
+  name      String
+  sortOrder Int
+  exercises Exercise[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Exercise {
+  id             Int          @id @default(autoincrement())
+  name           String
+  sortOrder      Int
+  exercisePlanId Int
+  exercisePlan   ExercisePlan @relation(fields: [exercisePlanId], references: [id])
+  difficulties   Difficulty[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Difficulty {
+  id          Int      @id @default(autoincrement())
+  name        String
+  sortOrder   Int
+  multiplier  Float
+  targetReps  Int
+  targetSets  Int
+  imageUrl    String
+  description String
+  exerciseId  Int
+  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
