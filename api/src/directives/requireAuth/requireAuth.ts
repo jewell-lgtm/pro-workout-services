@@ -15,9 +15,7 @@ export const schema = gql`
   directive @requireAuth(roles: [String]) on FIELD_DEFINITION
 `
 
-const validate: ValidatorDirectiveFunc = ({ context, directiveArgs }) => {
-  console.log('context', context)
-
+const validate: ValidatorDirectiveFunc = ({ directiveArgs }) => {
   const { roles } = directiveArgs
   applicationRequireAuth({ roles })
 }
