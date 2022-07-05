@@ -5,7 +5,7 @@ export const schema = gql`
     sortOrder: Int!
     exercisePlanId: Int!
     exercisePlan: ExercisePlan!
-    difficulties: [Difficulty]!
+    difficulties: [Difficulty!]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }

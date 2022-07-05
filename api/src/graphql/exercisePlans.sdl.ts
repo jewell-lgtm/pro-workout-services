@@ -3,7 +3,7 @@ export const schema = gql`
     id: Int!
     name: String!
     sortOrder: Int!
-    exercises: [Exercise]!
+    exercises: [Exercise!]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
