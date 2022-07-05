@@ -4,13 +4,22 @@
 #
 # For the full list of options, see the "App Configuration: redwood.toml" doc:
 # https://redwoodjs.com/docs/app-configuration-redwood-toml
-
 [web]
-  title = "Redwood App"
-  port = 8910
-  apiUrl = "/.redwood/functions" # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
-  includeEnvironmentVariables = [] # any ENV vars that should be available to the web side, see https://redwoodjs.com/docs/environment-variables#web
+title = "Redwood App"
+port = 8910
+apiUrl = "/.redwood/functions" # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
+includeEnvironmentVariables = [
+  'FIREBASE_API_KEY',
+  'FIREBASE_AUTH_DOMAIN',
+  'FIREBASE_DATABASE_URL',
+  'FIREBASE_PROJECT_ID',
+  'FIREBASE_STORAGE_BUCKET',
+  'FIREBASE_MESSAGING_SENDER_ID',
+  'FIREBASE_APP_ID',
+] # any ENV vars that should be available to the web side, see https://redwoodjs.com/docs/environment-variables#web
+
 [api]
-  port = 8911
+port = 8911
+
 [browser]
-  open = true
+open = true

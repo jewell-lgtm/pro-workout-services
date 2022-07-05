@@ -12,8 +12,9 @@
     "eslint-plugin-prettier": "^4.2.1",
     "husky": ">=6",
     "lint-staged": ">=10",
-    "prettier": "^2.7.1",
-    "prettier-plugin-prisma": "^3.14.0"
+    "prettier": "2.7.1",
+    "prettier-plugin-prisma": "^3.14.0",
+    "prettier-plugin-toml": "0.3.1"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
@@ -28,7 +29,7 @@
   },
   "packageManager": "yarn@3.2.1",
   "lint-staged": {
-    "*.{js,css,md,ts,tsx,jsx,prisma,json}": "prettier --write"
+    "*.{js,ts,jsx,tsx,prisma,md,json,sql,toml,css}": "prettier --write"
   },
   "scripts": {
     "postinstall": "husky install"
