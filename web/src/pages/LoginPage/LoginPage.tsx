@@ -15,7 +15,7 @@ const LoginPage = () => {
         setToken(null)
         throw e
       })
-  }, [setToken, currentUser])
+  }, [getToken, setToken, currentUser])
 
   return (
     <>
@@ -35,8 +35,11 @@ const LoginPage = () => {
         {isAuthenticated && <button onClick={() => logOut()}>Log Out</button>}
 
         {token && (
-          <textarea onClick={(e) => (e.target as HTMLTextAreaElement).select()}>
-            {JSON.stringify(
+          <textarea
+            data-role="tokendisplay123"
+            onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+            readOnly
+            value={JSON.stringify(
               {
                 'auth-provider': 'firebase',
                 Authorization: `Bearer ${token}`,
@@ -44,7 +47,7 @@ const LoginPage = () => {
               null,
               4
             )}
-          </textarea>
+          />
         )}
         <code style={{ whiteSpace: 'pre' }}>
           {JSON.stringify(currentUser, null, 4)}

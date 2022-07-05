@@ -1,4 +1,5 @@
-import { render } from '@redwoodjs/testing/web'
+import { CurrentUser } from '@redwoodjs/auth'
+import { render, waitFor, screen } from '@redwoodjs/testing/web'
 
 import LoginPage from './LoginPage'
 
@@ -7,8 +8,14 @@ import LoginPage from './LoginPage'
 
 describe('LoginPage', () => {
   it('renders successfully', () => {
-    expect(() => {
+    expect(async () => {
+      mockCurrentUser({ name: 'Rob' } as CurrentUser)
       render(<LoginPage />)
+      await waitFor(() => {
+        expect(screen.findByRole('tokendisplay123')).toBeInTheDocument()
+      })
     }).not.toThrow()
   })
 })
+
+//
