@@ -1,5 +1,4 @@
-import { IdTokenResult, User as FirebaseUser } from '@firebase/auth'
-import type { QueryResolvers, MutationResolvers } from 'types/graphql'
+import type { MutationResolvers, QueryResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
@@ -14,6 +13,7 @@ export const user: QueryResolvers['user'] = ({ id }) => {
 }
 
 export const currentUser: QueryResolvers['currentUser'] = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = context.currentUser as any
 
   return db.user.upsert({

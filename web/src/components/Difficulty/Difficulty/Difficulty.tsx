@@ -1,6 +1,4 @@
-import humanize from 'humanize-string'
-
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
@@ -12,24 +10,24 @@ const DELETE_DIFFICULTY_MUTATION = gql`
   }
 `
 
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
+// const formatEnum = (values: string | string[] | null | undefined) => {
+//   if (values) {
+//     if (Array.isArray(values)) {
+//       const humanizedValues = values.map((value) => humanize(value))
+//       return humanizedValues.join(', ')
+//     } else {
+//       return humanize(values as string)
+//     }
+//   }
+// }
 
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
+// const jsonDisplay = (obj) => {
+//   return (
+//     <pre>
+//       <code>{JSON.stringify(obj, null, 2)}</code>
+//     </pre>
+//   )
+// }
 
 const timeTag = (datetime) => {
   return (
@@ -41,9 +39,9 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+// const checkboxInputTag = (checked) => {
+//   return <input type="checkbox" checked={checked} disabled />
+// }
 
 const Difficulty = ({ difficulty }) => {
   const [deleteDifficulty] = useMutation(DELETE_DIFFICULTY_MUTATION, {
