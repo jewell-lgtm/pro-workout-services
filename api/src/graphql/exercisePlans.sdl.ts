@@ -1,5 +1,5 @@
 export const schema = gql`
-  type ExercisePlan {
+  type ExerciseSet {
     id: Int!
     name: String!
     sortOrder: Int!
@@ -9,27 +9,24 @@ export const schema = gql`
   }
 
   type Query {
-    exercisePlans: [ExercisePlan!]! @requireAuth
-    exercisePlan(id: Int!): ExercisePlan @requireAuth
+    exerciseSets: [ExerciseSet!]! @requireAuth
+    exerciseSet(id: Int!): ExerciseSet @requireAuth
   }
 
-  input CreateExercisePlanInput {
+  input CreateExerciseSetInput {
     name: String!
     sortOrder: Int!
   }
 
-  input UpdateExercisePlanInput {
+  input UpdateExerciseSetInput {
     name: String
     sortOrder: Int
   }
 
   type Mutation {
-    createExercisePlan(input: CreateExercisePlanInput!): ExercisePlan!
+    createExerciseSet(input: CreateExerciseSetInput!): ExerciseSet! @requireAuth
+    updateExerciseSet(id: Int!, input: UpdateExerciseSetInput!): ExerciseSet!
       @requireAuth
-    updateExercisePlan(
-      id: Int!
-      input: UpdateExercisePlanInput!
-    ): ExercisePlan! @requireAuth
-    deleteExercisePlan(id: Int!): ExercisePlan! @requireAuth
+    deleteExerciseSet(id: Int!): ExerciseSet! @requireAuth
   }
 `

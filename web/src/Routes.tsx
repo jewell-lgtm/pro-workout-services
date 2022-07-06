@@ -11,7 +11,7 @@
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import DifficultiesLayout from 'src/layouts/DifficultiesLayout'
-import ExercisePlansLayout from 'src/layouts/ExercisePlansLayout'
+import ExerciseSetsLayout from 'src/layouts/ExerciseSetsLayout'
 import ExercisesLayout from 'src/layouts/ExercisesLayout'
 
 const Routes = () => {
@@ -31,11 +31,11 @@ const Routes = () => {
           <Route path="/exercises/{id:Int}" page={ExerciseExercisePage} name="exercise" />
           <Route path="/exercises" page={ExerciseExercisesPage} name="exercises" />
         </Set>
-        <Set wrap={ExercisePlansLayout}>
-          <Route path="/exercise-plans/new" page={ExercisePlanNewExercisePlanPage} name="newExercisePlan" />
-          <Route path="/exercise-plans/{id:Int}/edit" page={ExercisePlanEditExercisePlanPage} name="editExercisePlan" />
-          <Route path="/exercise-plans/{id:Int}" page={ExercisePlanExercisePlanPage} name="exercisePlan" />
-          <Route path="/exercise-plans" page={ExercisePlanExercisePlansPage} name="exercisePlans" />
+        <Set wrap={ExerciseSetsLayout}>
+          <Route path="/exercise-set/new" page={ExerciseSetNewExerciseSetPage} name="newExerciseSet" />
+          <Route path="/exercise-set/{id:Int}/edit" page={ExerciseSetEditExerciseSetPage} name="editExerciseSet" />
+          <Route path="/exercise-set/{id:Int}" page={ExerciseSetExerciseSetPage} name="exerciseSet" />
+          <Route path="/exercise-set" page={ExerciseSetExerciseSetsPage} name="exerciseSets" />
         </Set>
       </Private>
       <Route notfound page={NotFoundPage} />

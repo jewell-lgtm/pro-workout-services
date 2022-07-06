@@ -3,7 +3,7 @@ import { db } from 'api/src/lib/db'
 
 export default async () => {
   try {
-    const plan: Prisma.ExercisePlanCreateInput = {
+    const plan: Prisma.ExerciseSetCreateInput = {
       name: 'Default',
       sortOrder: 0,
       exercises: {
@@ -126,7 +126,7 @@ export default async () => {
       },
     }
 
-    await db.exercisePlan.create({ data: plan })
+    await db.exerciseSet.create({ data: plan })
   } catch (error) {
     console.warn('Please define your seed data.')
     console.error(error)

@@ -8,9 +8,9 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
-const ExerciseForm = (props) => {
+const ExerciseSetForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.exercise?.id)
+    props.onSave(data, props?.exerciseSet?.id)
   }
 
   return (
@@ -33,7 +33,7 @@ const ExerciseForm = (props) => {
 
         <TextField
           name="name"
-          defaultValue={props.exercise?.name}
+          defaultValue={props.exerciseSet?.name}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
@@ -51,31 +51,13 @@ const ExerciseForm = (props) => {
 
         <NumberField
           name="sortOrder"
-          defaultValue={props.exercise?.sortOrder}
+          defaultValue={props.exerciseSet?.sortOrder}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
         <FieldError name="sortOrder" className="rw-field-error" />
-
-        <Label
-          name="exerciseSetId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Exercise plan id
-        </Label>
-
-        <NumberField
-          name="exerciseSetId"
-          defaultValue={props.exercise?.exerciseSetId}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="exerciseSetId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
@@ -87,4 +69,4 @@ const ExerciseForm = (props) => {
   )
 }
 
-export default ExerciseForm
+export default ExerciseSetForm

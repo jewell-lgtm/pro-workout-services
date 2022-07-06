@@ -19,7 +19,7 @@ model User {
   updatedAt       DateTime @updatedAt
 }
 
-model ExercisePlan {
+model ExerciseSet {
   id        Int        @id @default(autoincrement())
   name      String
   sortOrder Int
@@ -29,14 +29,14 @@ model ExercisePlan {
 }
 
 model Exercise {
-  id             Int          @id @default(autoincrement())
-  name           String
-  sortOrder      Int
-  exercisePlanId Int
-  exercisePlan   ExercisePlan @relation(fields: [exercisePlanId], references: [id])
-  difficulties   Difficulty[]
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  id            Int          @id @default(autoincrement())
+  name          String
+  sortOrder     Int
+  exerciseSetId Int
+  exerciseSet   ExerciseSet  @relation(fields: [exerciseSetId], references: [id])
+  difficulties  Difficulty[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 }
 
 model Difficulty {

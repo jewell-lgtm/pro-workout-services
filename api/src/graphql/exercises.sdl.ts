@@ -3,8 +3,8 @@ export const schema = gql`
     id: Int!
     name: String!
     sortOrder: Int!
-    exercisePlanId: Int!
-    exercisePlan: ExercisePlan!
+    exerciseSetId: Int!
+    exerciseSet: ExerciseSet!
     difficulties: [Difficulty!]!
     createdAt: DateTime!
     updatedAt: DateTime!
@@ -18,13 +18,13 @@ export const schema = gql`
   input CreateExerciseInput {
     name: String!
     sortOrder: Int!
-    exercisePlanId: Int!
+    exerciseSetId: Int!
   }
 
   input UpdateExerciseInput {
     name: String
     sortOrder: Int
-    exercisePlanId: Int
+    exerciseSetId: Int
   }
 
   type Mutation {

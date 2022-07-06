@@ -7,7 +7,7 @@ export const standard = defineScenario<Prisma.ExerciseCreateArgs>({
         name: 'String',
         sortOrder: 4065865,
         updatedAt: '2022-07-01T12:13:30Z',
-        exercisePlan: {
+        exerciseSet: {
           create: {
             name: 'String',
             sortOrder: 7937512,
@@ -21,7 +21,7 @@ export const standard = defineScenario<Prisma.ExerciseCreateArgs>({
         name: 'String',
         sortOrder: 7151762,
         updatedAt: '2022-07-01T12:13:30Z',
-        exercisePlan: {
+        exerciseSet: {
           create: {
             name: 'String',
             sortOrder: 1078287,

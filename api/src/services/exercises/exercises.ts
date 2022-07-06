@@ -41,8 +41,8 @@ export const deleteExercise: MutationResolvers['deleteExercise'] = ({ id }) => {
 }
 
 export const Exercise: ExerciseResolvers = {
-  exercisePlan: (_obj, { root }) =>
-    db.exercise.findUnique({ where: { id: root.id } }).exercisePlan(),
+  exerciseSet: (_obj, { root }) =>
+    db.exercise.findUnique({ where: { id: root.id } }).exerciseSet(),
   difficulties: (_obj, { root }) =>
     db.exercise.findUnique({ where: { id: root.id } }).difficulties(),
 }

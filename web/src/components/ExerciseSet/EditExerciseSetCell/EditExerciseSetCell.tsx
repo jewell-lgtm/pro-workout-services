@@ -1,31 +1,32 @@
-import type { EditExerciseById } from 'types/graphql'
+import type { EditExerciseSetById } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import ExerciseForm from 'src/components/Exercise/ExerciseForm'
+import ExerciseSetForm from 'src/components/ExerciseSet/ExerciseSetForm'
 
 export const QUERY = gql`
-  query EditExerciseById($id: Int!) {
-    exercise: exercise(id: $id) {
+  query EditExerciseSetById($id: Int!) {
+    exerciseSet: exerciseSet(id: $id) {
       id
       name
       sortOrder
-      exerciseSetId
       createdAt
       updatedAt
     }
   }
 `
-const UPDATE_EXERCISE_MUTATION = gql`
-  mutation UpdateExerciseMutation($id: Int!, $input: UpdateExerciseInput!) {
-    updateExercise(id: $id, input: $input) {
+const UPDATE_exercise_set_MUTATION = gql`
+  mutation UpdateExerciseSetMutation(
+    $id: Int!
+    $input: UpdateExerciseSetInput!
+  ) {
+    updateExerciseSet(id: $id, input: $input) {
       id
       name
       sortOrder
-      exerciseSetId
       createdAt
       updatedAt
     }
@@ -38,13 +39,15 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ exercise }: CellSuccessProps<EditExerciseById>) => {
-  const [updateExercise, { loading, error }] = useMutation(
-    UPDATE_EXERCISE_MUTATION,
+export const Success = ({
+  exerciseSet,
+}: CellSuccessProps<EditExerciseSetById>) => {
+  const [updateExerciseSet, { loading, error }] = useMutation(
+    UPDATE_exercise_set_MUTATION,
     {
       onCompleted: () => {
-        toast.success('Exercise updated')
-        navigate(routes.exercises())
+        toast.success('ExerciseSet updated')
+        navigate(routes.exerciseSets())
       },
       onError: (error) => {
         toast.error(error.message)
@@ -53,22 +56,19 @@ export const Success = ({ exercise }: CellSuccessProps<EditExerciseById>) => {
   )
 
   const onSave = (input, id) => {
-    const castInput = Object.assign(input, {
-      exerciseSetId: parseInt(input.exerciseSetId),
-    })
-    updateExercise({ variables: { id, input: castInput } })
+    updateExerciseSet({ variables: { id, input } })
   }
 
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
         <h2 className="rw-heading rw-heading-secondary">
-          Edit Exercise {exercise.id}
+          Edit ExerciseSet {exerciseSet.id}
         </h2>
       </header>
       <div className="rw-segment-main">
-        <ExerciseForm
-          exercise={exercise}
+        <ExerciseSetForm
+          exerciseSet={exerciseSet}
           onSave={onSave}
           error={error}
           loading={loading}

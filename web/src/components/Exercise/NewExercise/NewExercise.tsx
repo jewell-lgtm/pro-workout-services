@@ -28,7 +28,7 @@ const NewExercise = () => {
 
   const onSave = (input) => {
     const castInput = Object.assign(input, {
-      exercisePlanId: parseInt(input.exercisePlanId),
+      exerciseSetId: parseInt(input.exerciseSetId),
     })
     createExercise({ variables: { input: castInput } })
   }

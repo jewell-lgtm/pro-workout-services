@@ -31,13 +31,13 @@ describe('exercises', () => {
       input: {
         name: 'String',
         sortOrder: 855043,
-        exercisePlanId: scenario.exercise.two.exercisePlanId,
+        exerciseSetId: scenario.exercise.two.exerciseSetId,
       },
     })
 
     expect(result.name).toEqual('String')
     expect(result.sortOrder).toEqual(855043)
-    expect(result.exercisePlanId).toEqual(scenario.exercise.two.exercisePlanId)
+    expect(result.exerciseSetId).toEqual(scenario.exercise.two.exerciseSetId)
   })
 
   scenario('updates a exercise', async (scenario: StandardScenario) => {

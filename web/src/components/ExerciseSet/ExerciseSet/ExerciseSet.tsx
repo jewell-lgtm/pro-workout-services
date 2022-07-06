@@ -4,9 +4,9 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-const DELETE_EXERCISE_MUTATION = gql`
-  mutation DeleteExerciseMutation($id: Int!) {
-    deleteExercise(id: $id) {
+const DELETE_exercise_set_MUTATION = gql`
+  mutation DeleteExerciseSetMutation($id: Int!) {
+    deleteExerciseSet(id: $id) {
       id
     }
   }
@@ -45,11 +45,11 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Exercise = ({ exercise }) => {
-  const [deleteExercise] = useMutation(DELETE_EXERCISE_MUTATION, {
+const ExerciseSet = ({ exerciseSet }) => {
+  const [deleteExerciseSet] = useMutation(DELETE_exercise_set_MUTATION, {
     onCompleted: () => {
-      toast.success('Exercise deleted')
-      navigate(routes.exercises())
+      toast.success('ExerciseSet deleted')
+      navigate(routes.exerciseSets())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -57,8 +57,8 @@ const Exercise = ({ exercise }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete exercise ' + id + '?')) {
-      deleteExercise({ variables: { id } })
+    if (confirm('Are you sure you want to delete exerciseSet ' + id + '?')) {
+      deleteExerciseSet({ variables: { id } })
     }
   }
 
@@ -67,41 +67,37 @@ const Exercise = ({ exercise }) => {
       <div className="rw-segment">
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
-            Exercise {exercise.id} Detail
+            ExerciseSet {exerciseSet.id} Detail
           </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
-              <td>{exercise.id}</td>
+              <td>{exerciseSet.id}</td>
             </tr>
             <tr>
               <th>Name</th>
-              <td>{exercise.name}</td>
+              <td>{exerciseSet.name}</td>
             </tr>
             <tr>
               <th>Sort order</th>
-              <td>{exercise.sortOrder}</td>
-            </tr>
-            <tr>
-              <th>Exercise plan id</th>
-              <td>{exercise.exerciseSetId}</td>
+              <td>{exerciseSet.sortOrder}</td>
             </tr>
             <tr>
               <th>Created at</th>
-              <td>{timeTag(exercise.createdAt)}</td>
+              <td>{timeTag(exerciseSet.createdAt)}</td>
             </tr>
             <tr>
               <th>Updated at</th>
-              <td>{timeTag(exercise.updatedAt)}</td>
+              <td>{timeTag(exerciseSet.updatedAt)}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editExercise({ id: exercise.id })}
+          to={routes.editExerciseSet({ id: exerciseSet.id })}
           className="rw-button rw-button-blue"
         >
           Edit
@@ -109,7 +105,7 @@ const Exercise = ({ exercise }) => {
         <button
           type="button"
           className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(exercise.id)}
+          onClick={() => onDeleteClick(exerciseSet.id)}
         >
           Delete
         </button>
@@ -118,4 +114,4 @@ const Exercise = ({ exercise }) => {
   )
 }
 
-export default Exercise
+export default ExerciseSet

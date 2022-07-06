@@ -4,11 +4,11 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Exercise/ExercisesCell'
+import { QUERY } from 'src/components/ExerciseSet/ExerciseSetsCell'
 
-const DELETE_EXERCISE_MUTATION = gql`
-  mutation DeleteExerciseMutation($id: Int!) {
-    deleteExercise(id: $id) {
+const DELETE_exercise_set_MUTATION = gql`
+  mutation DeleteExerciseSetMutation($id: Int!) {
+    deleteExerciseSet(id: $id) {
       id
     }
   }
@@ -53,10 +53,10 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const ExercisesList = ({ exercises }) => {
-  const [deleteExercise] = useMutation(DELETE_EXERCISE_MUTATION, {
+const ExerciseSetsList = ({ exerciseSets }) => {
+  const [deleteExerciseSet] = useMutation(DELETE_exercise_set_MUTATION, {
     onCompleted: () => {
-      toast.success('Exercise deleted')
+      toast.success('ExerciseSet deleted')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -69,8 +69,8 @@ const ExercisesList = ({ exercises }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete exercise ' + id + '?')) {
-      deleteExercise({ variables: { id } })
+    if (confirm('Are you sure you want to delete exerciseSet ' + id + '?')) {
+      deleteExerciseSet({ variables: { id } })
     }
   }
 
@@ -82,42 +82,40 @@ const ExercisesList = ({ exercises }) => {
             <th>Id</th>
             <th>Name</th>
             <th>Sort order</th>
-            <th>Exercise plan id</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {exercises.map((exercise) => (
-            <tr key={exercise.id}>
-              <td>{truncate(exercise.id)}</td>
-              <td>{truncate(exercise.name)}</td>
-              <td>{truncate(exercise.sortOrder)}</td>
-              <td>{truncate(exercise.exerciseSetId)}</td>
-              <td>{timeTag(exercise.createdAt)}</td>
-              <td>{timeTag(exercise.updatedAt)}</td>
+          {exerciseSets.map((exerciseSet) => (
+            <tr key={exerciseSet.id}>
+              <td>{truncate(exerciseSet.id)}</td>
+              <td>{truncate(exerciseSet.name)}</td>
+              <td>{truncate(exerciseSet.sortOrder)}</td>
+              <td>{timeTag(exerciseSet.createdAt)}</td>
+              <td>{timeTag(exerciseSet.updatedAt)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.exercise({ id: exercise.id })}
-                    title={'Show exercise ' + exercise.id + ' detail'}
+                    to={routes.exerciseSet({ id: exerciseSet.id })}
+                    title={'Show exerciseSet ' + exerciseSet.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editExercise({ id: exercise.id })}
-                    title={'Edit exercise ' + exercise.id}
+                    to={routes.editExerciseSet({ id: exerciseSet.id })}
+                    title={'Edit exerciseSet ' + exerciseSet.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete exercise ' + exercise.id}
+                    title={'Delete exerciseSet ' + exerciseSet.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(exercise.id)}
+                    onClick={() => onDeleteClick(exerciseSet.id)}
                   >
                     Delete
                   </button>
@@ -131,4 +129,4 @@ const ExercisesList = ({ exercises }) => {
   )
 }
 
-export default ExercisesList
+export default ExerciseSetsList

@@ -10,7 +10,7 @@ export const QUERY = gql`
       id
       name
       sortOrder
-      exercisePlanId
+      exerciseSetId
       createdAt
       updatedAt
     }
